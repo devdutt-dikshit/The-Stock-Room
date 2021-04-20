@@ -1,0 +1,100 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+Cart
+{% endblock title %}
+
+{% block css %}
+<style>
+	a .dev{
+		background-color: yellow;
+		color: aqua;
+	}
+</style>
+{% endblock css %}
+
+{% block content %}
+	<!-- Page info -->
+	<div class="page-top-info">
+		<div class="container">
+			<h4>Your cart</h4>
+			<div class="site-pagination">
+				<a href="">Home</a> /
+				<a href="">Your cart</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page info end -->
+
+
+	<!-- cart section end -->
+	<section class="cart-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="cart-table">
+						<h3>Cart</h3>
+						<div class="cart-table-warp">
+							<table>
+							<thead>
+								<tr>
+									<th class="product-th">Product</th>
+									<th class="quy-th">Quantity</th>
+									<th class="total-th">Price</th>
+									<th class="total-th">Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for i in cartdata%}
+								{% if i.quantity != 0%}
+								<tr>
+									<td class="product-col">
+										<img src="/media/{{i.prod_details.photo}}" alt="">
+										<div class="pc-title">
+											<h4>{{i.prod_details.product_name}}</h4>
+											<p>{{i.prod_details.desc|truncatewords:5}}</p>
+										</div>
+									</td>
+									<td class="quy-col">
+										<div class="quantity">
+					                        <div class="pro-qty">
+												<a href="/updatecart/{{i.id}}/-1" class="dec qtybtn">-</a>
+												<input type="text" value="{{i.quantity}}">
+												<a href="/updatecart/{{i.id}}/1" class="dec qtybtn">+</a>
+
+											</div>
+                    					</div>
+									</td>
+								
+									<td class="total-col" id="pr{{i.id}}"><h4>{{i.prod_details.prize}} Rs</h4></td>
+									<td class="total-col mx-3"><a href="/itemdelete/{{i.id}}" class="site-btn-dev">Delete Item</a></td>
+								</tr>
+								{%endif%}
+
+
+								{%endfor%}
+							</tbody>
+						</table>
+						</div>
+						<div class="total-cost">
+							<h6 class="mr-5 pr-5">Total <span>{{total}}</span></h6>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 card-right">
+					<!-- <form class="promo-code-form">
+						<input type="text" placeholder="Enter promo code">
+						<button>Submit</button>
+					</form> -->
+					<a href="#" class="site-btn">Proceed to checkout</a>
+					<a href="/" class="site-btn sb-dark">Continue shopping</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- cart section end -->
+
+
+
+	{% endblock content %}

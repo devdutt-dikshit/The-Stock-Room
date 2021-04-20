@@ -1,0 +1,58 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+login
+{% endblock title %}
+
+{% block css %}
+        <style>
+         .submitpo{
+             display: flex;
+             justify-content: center;
+         }
+         #submitlogin{
+             margin: 0 auto;
+         }
+
+
+         .loginheading{
+             text-align: center;
+             /* padding-left: 500px; */
+         }
+         #caccount{
+             margin: 0 auto;
+         }
+         .messages{
+             text-align: center;
+         }
+        </style>
+{% endblock css %}
+{% block content %}
+
+<h3 class="loginheading mt-3">Registeration</h3>
+<div class="messages mt-2">
+    {% for i in messages %}
+      {{i}}
+      {%endfor%}
+</div>
+<div class="submitpo mb-5">
+    <div class="col-sm-6 mx-5">
+        <form method="POST" class="header-search-form">
+            {% csrf_token %}
+            <input class="mt-4" type="text" name="first_name" placeholder="First Name">
+            <input class="mt-4" type="text" name="last_name" placeholder="Last Name">
+            <input class="mt-4" type="text" name="user_name" placeholder="Username">
+            <input class="mt-4" type="email" name="email" placeholder="Email">
+            <input class="mt-4" type="password" name="password" placeholder="Password">
+            <input class="mt-4" type="password" name="password1" placeholder="Re-Password">
+            
+            <div id="submitlogin" class="col-sm-6 mt-5">
+                <input class="site-btn sb-line sb-dark" type="submit">
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock content %}

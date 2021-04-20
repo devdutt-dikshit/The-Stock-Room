@@ -1,0 +1,123 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+login
+{% endblock title %}
+
+{% block css %}
+        
+{% endblock css %}
+
+{% block content %}
+{% for i in product%}
+
+
+	<!-- Page info -->
+	<div class="page-top-info">
+		<div class="container">
+			<h5>Category Page</h5>
+			<div class="site-pagination">
+				<a href="/">Home</a> /
+				<a href="/allproducts">Products</a> /
+				<a href="/products/{{i.prodcat}}">{{i.prodcat}}</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page info end -->
+
+
+	<!-- product section -->
+	<section class="product-section">
+		<div class="container">
+			<div class="back-link">
+				<a href="/"> &lt;&lt; Back to Category</a>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="product-pic-zoom">
+						
+						<img class="product-big-img" src="/media/{{i.photo}}" alt="">
+					</div>
+					
+					<div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
+						<div class="product-thumbs-track">
+							<div class="pt active" data-imgbigurl="/media/{{i.photo}}"><img src="/media/{{i.photo}}" alt=""></div>
+						</div>
+					</div>
+                </div>
+                
+				<div class="col-lg-6 product-details">
+					<h1 class="p-title">{{i.product_name}}</h1>
+					<h5 class="p-price">Rs. {{i.prize}}</h5>
+					<h4 class="p-stock">Available: <span>In Stock</span></h4>
+					<div class="p-rating mb-5 mb-5">
+						<i class="fa fa-star-o"></i>
+						<i class="fa fa-star-o"></i>
+						<i class="fa fa-star-o"></i>
+						<i class="fa fa-star-o"></i>
+						<i class="fa fa-star-o fa-fade"></i>
+					</div>
+					
+					{% if user.is_authenticated%}
+					<a href="/addtcart/{{user.id}}/{{i.id}}" class="site-btn">Add To Cart</a>
+					{%endif%}
+					<div id="accordion" class="accordion-area">
+						<div class="panel">
+							<div class="panel-header" id="headingOne">
+								<button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">information</button>
+							</div>
+							<div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+								<div class="panel-body">
+									<p>{{i.desc}}</p>
+								</div>
+							</div>
+						</div>
+						{%endfor%}
+					</div>
+					<div class="social-sharing">
+						<a href="#"><i class="fa fa-google-plus"></i></a>
+						<a href="#"><i class="fa fa-facebook"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- product section end -->
+
+
+    <!-- RELATED PRODUCTS section -->
+	<section class="related-product-section">
+		<div class="container">
+			<div class="section-title">
+				<h2>RELATED PRODUCTS</h2>
+			</div>
+			<div class="product-slider owl-carousel">
+            {%for i in allproducts %}
+				<div class="product-item">
+					<div class="pi-pic">
+						{% if i.sale %}
+									<div class="tag-sale">ON SALE</div>
+						{% endif%}
+						<img src="/media/{{i.photo}}" alt="">
+						<div class="pi-links">
+							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+						</div>
+					</div>
+					<div class="pi-text">
+						<h6>Rs. {{i.prize}}</h6>
+						<p>{{i.product_name}}</p>
+					</div>
+                </div>
+                {%endfor%}
+			</div>
+		</div>
+	</section>
+	<!-- RELATED PRODUCTS section end -->
+
+
+
+
+
+    {% endblock content %}

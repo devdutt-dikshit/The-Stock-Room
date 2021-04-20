@@ -1,0 +1,12 @@
+var data =[{
+        "id": 1,
+        "mcat_id": 2,
+        "scat_id": 2,
+        "sscat": "Adidas Shirt"
+    },
+    {
+        "id": 2,
+        "mcat_id": 2,
+        "scat_id": 2,
+        "sscat": "Reebok Tshirts"
+    }]

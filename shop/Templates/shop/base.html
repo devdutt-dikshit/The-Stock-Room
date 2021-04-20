@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+<head>
+	<title>{% block title %}
+        {% endblock title %}</title>
+	<meta charset="UTF-8">
+	<meta name="description" content=" Divisima | eCommerce Template">
+	<meta name="keywords" content="divisima, eCommerce, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+    {% block links %}
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'shop/css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'shop/css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'shop/css/flaticon.css' %}"/>
+	<link rel="stylesheet" href="{% static 'shop/css/slicknav.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'shop/css/jquery-ui.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'shop/css/owl.carousel.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'shop/css/animate.css' %}"/>
+	<link rel="stylesheet" href="{% static 'shop/css/style.css' %}" />
+	<link rel="stylesheet" href="{% static 'shop/mycss/index.css' %}" />
+    {% endblock links %}
+   
+
+        {% block css %}
+
+        {% endblock css %}
+
+
+
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="/" class="site-logo">
+							<img src="{% static 'shop/img/logo.png' %}" alt="">
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form">
+							<input type="text" placeholder="Search">
+							<button><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div class="user-panel">
+                            {% if user.is_authenticated%}
+                            <div class="up-item">
+								<i class="flaticon-profile"></i>
+								<a href="#">Hello,{{user.first_name}}</a>
+                            </div>
+                            <div class="up-item">
+								<i class="flaticon-logout"></i>
+								<a href="/logout">Logout</a>
+                            </div>
+                            <div class="up-item ml-4">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<!-- <span id="cart1">0</span> -->
+								</div>
+								<a href="/cart/{{user.id}}">Shopping Cart</a>
+							</div>
+                           {% else %}
+							<div class="up-item">
+								<i class="flaticon-profile"></i>
+								<a href="/login">Log In</a> or <a href="/register">Create Account</a>
+							</div>
+							<!-- <div class="up-item">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<span id="cart1">0</span>
+								</div>
+								<a href="#">Shopping Cart </a>
+							</div> -->
+                            {% endif %}
+							
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        <nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/products/Electronics">Electronics</a></li>
+					<li><a href="/products/Man">Men</a></li>
+					<li><a href="/products/Woman">Women</a></li>
+					<!-- <li><a href="#">Pages</a>
+						<ul class="sub-menu">
+							<li><a href="./product.html">Product Page</a></li>
+							<li><a href="/allcategory">Category Page</a></li>
+							<li><a href="./cart.html">Cart Page</a></li>
+							<li><a href="./checkout.html">Checkout Page</a></li>
+							<li><a href="./contact.html">Contact Page</a></li>
+						</ul>
+					</li> -->
+
+				</ul>
+			</div>
+		</nav>
+    </header>
+	{% block content %}
+
+
+    {% endblock content %}
+	
+	  
+	
+
+
+
+
+	{% block footer%}
+	
+	<!-- Footer section -->
+	<section class="footer-section">
+		<div class="container">
+			<div class="footer-logo text-center">
+				<a href="index.html"><img src="{% static 'shop/img/logo-light.png' %}" alt=""></a>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>About</h2>
+						<p>This e-commerce website lists all products in user's feed with its respective price. Without logging in as a user, he/she won't get any access to purchase any items; only the user can check items and its details.</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>More</h2>
+						<ul>
+							<li><a href="/about">About Us</a></li>
+							<li><a href="/allcategory">All Products</a></li>
+							<li><a href="/products/Man">Man</a></li>
+							<li><a href="/products/Woman">Woman</a></li>
+							<li><a href="/products/Electronics">Eletronics</a></li>
+							
+						</ul>
+						
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-sm-6">
+					<div class="footer-widget contact-widget">
+						<h2>Contact</h2>
+						<div class="con-info">
+							<span>Shop Name</span>
+							<p>The Stockroom Store</p>
+						</div>
+						<div class="con-info">
+							<span>Address</span>
+							<p>Malviya Nagar Jaipur,RJ</p>
+						</div>
+						<div class="con-info">
+							<span>Call</span>
+							<p>+91 123456789</p>
+						</div>
+						<div class="con-info">
+							<span>Email</span>
+							<p>thestockroom@gmail.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="social-links-warp">
+			<div class="container">
+				<div class="social-links">
+					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+					<a href="" class="google-plus"><i class="fa fa-google-plus"></i><span>g+plus</span></a>
+					<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- Footer section end -->
+	{% endblock footer%}
+
+	{% block js %}
+	
+	{% endblock js%}
+	<script>
+			if (localStorage.getItem('cart') == null) {
+    var cart = {};
+	} else {
+		cart = JSON.parse(localStorage.getItem('cart'));
+
+	}
+
+	</script>
+    <script src="{% static 'shop/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'shop/js/jquery.slicknav.min.js' %}"></script>
+	<script src="{% static 'shop/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'shop/js/jquery.nicescroll.min.js' %}"></script>
+	<script src="{% static 'shop/js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'shop/js/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'shop/js/main.js' %}"></script>
+</body>
+</html>

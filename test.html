@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <form action="" method="post">
+    <select onchange="hello()" name="" id="select1">
+        <option value="None" selected>---select---</option>
+    </select><br>
+    <select onchange="hello1()" name="" id="select2">
+        <option value="None" selected>---select---</option>
+    </select>
+    <br>
+    <select name="" id="select3">
+        <option value="None" selected>---select---</option>
+    </select>
+    <button type="submit">submit</button>
+</form>
+<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+<script> 
+function mcatdatalist(data){
+            for(i=0; i<data.length; i++){
+                $('#select1').append(`<option value="${data[i]["mcat"]}">${data[i]["mcat"]}</option>`);
+            }  
+    }
+function scatdatalist(data){
+    for(i=0; i<data.length; i++){
+                $('#select2').append(`<option value="${data[i]["scat"]}">${data[i]["scat"]}</option>`);
+            }  
+}
+function sscatdatalist(data){
+    for(i=0; i<data.length; i++){
+                $('#select3').append(`<option value="${data[i]["sscat"]}">${data[i]["sscat"]}</option>`);
+            }  
+}
+    function devget()
+        {
+            let data;
+            let x=fetch('http://127.0.0.1:8000/mcat/')
+            .then(response =>{
+                x=response.json()
+            return x;
+            })
+            .then((y) =>{
+                mcatdatalist(y)
+            })
+            return x
+            }
+    devget();
+
+
+function hello(){
+var x = $("#select1 option:selected").text();
+var url="http://127.0.0.1:8000/test/"+ x
+fetch(url).then((data)=>{return data.json()}).then(json=>{
+    scatdatalist(json);
+})
+        }
+
+
+function hello1(){
+var x = $("#select1 option:selected").text();
+var url="http://127.0.0.1:8000/test1/"+ x
+console.log(url)
+fetch(url).then((data)=>{return data.json()}).then(json=>{
+    console.log(json)
+    sscatdatalist(json);
+})
+        }   
+    </script> 
+
+</body>
+
+</html>
